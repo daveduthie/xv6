@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "ubuntu/xenial64"
 
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
@@ -19,7 +19,7 @@ Vagrant.configure("2") do |config|
                        libglib2.0-dev \
                        libpixman-1-dev \
                        flex \
-                       bison \
+                       bison
 
     if [ ! -d "/home/vagrant/qemu" ]; then
       git clone git://git.qemu.org/qemu.git /home/vagrant/qemu
@@ -30,10 +30,9 @@ Vagrant.configure("2") do |config|
     git submodule update --recursive
     git submodule status --recursive
     ./configure --target-list="i386-softmmu"
-    make && make install
-  SHELL
-
-  config.vm.provision "shell", inline: <<-SHELL
+    make -j4 && make -j4 install
+    cd /home/vagrant
+    echo "Done!"
   SHELL
 
   config.vm.synced_folder ".", "/home/vagrant/lab"
