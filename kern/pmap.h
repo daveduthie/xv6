@@ -45,6 +45,7 @@ _kaddr(const char *file, int line, physaddr_t pa)
 }
 
 
+// anonymous enums take no space at runtime
 enum {
 	// For page_alloc, zero the returned physical page.
 	ALLOC_ZERO = 1<<0,
