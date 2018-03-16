@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
                        bison
 
     if [ ! -d "/home/vagrant/qemu" ]; then
-      git clone git://git.qemu.org/qemu.git /home/vagrant/qemu
+      git clone http://web.mit.edu/ccutler/www/qemu.git -b 6.828-2.3.0 /home/vagrant/qemu
     fi
 
     cd /home/vagrant/qemu
