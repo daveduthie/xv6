@@ -4,6 +4,10 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
 
+  config.vm.provider 'virtualbox' do |vb|
+     vb.customize [ "guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 1000 ]
+  end
+
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y build-essential \
